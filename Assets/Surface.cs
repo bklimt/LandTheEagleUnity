@@ -50,7 +50,7 @@ public class Surface : MonoBehaviour {
 				newY += (scaleY * boxSizeY);
 			}
 			
-			Vector3 newPosition = new Vector3(newX - 0.04f, newY, newZ);
+			Vector3 newPosition = new Vector3(newX, newY, newZ);
 			if (slope < 0) {
 				Instantiate(surfaceTopBottomPrefab, newPosition, Quaternion.identity);
 			} else if (slope > 0) {
