@@ -31,7 +31,7 @@ public class GameState : MonoBehaviour {
 
 	public float GroundSpeed {
 		get {
-			return -0.05f;
+			return -5.0f;
 		}
 	}
 

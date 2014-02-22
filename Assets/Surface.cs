@@ -12,7 +12,7 @@ public class Surface : MonoBehaviour {
 	public bool isFlat = false;
 
 	private bool haveCreatedRight = false;
-	private int rows = 6;
+	private int rows = 7;
 	private float maxY = -1.0f;
 	private float minY = -3.0f;
 
@@ -50,7 +50,7 @@ public class Surface : MonoBehaviour {
 				newY += (scaleY * boxSizeY);
 			}
 			
-			Vector3 newPosition = new Vector3(newX, newY, newZ);
+			Vector3 newPosition = new Vector3(newX - 0.04f, newY, newZ);
 			if (slope < 0) {
 				Instantiate(surfaceTopBottomPrefab, newPosition, Quaternion.identity);
 			} else if (slope > 0) {
@@ -70,7 +70,7 @@ public class Surface : MonoBehaviour {
 	void Update() {
 		GameState state = GameState.Instance;
 		if (!state.Grounded) {
-			transform.Translate(state.GroundSpeed, 0, 0);
+			transform.Translate(state.GroundSpeed * Time.deltaTime, 0, 0);
 		}
 
 		MaybeCreateChildren();
