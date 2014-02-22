@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Lander : MonoBehaviour {
 
+	public AudioClip thrustSound;
+
 	void Start() {
 	}
 	
@@ -14,6 +16,7 @@ public class Lander : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0)) {
 			if (rigidbody2D.gravityScale != 0.0f) {
 				if (state.Fuel > 0) {
+					audio.PlayOneShot(thrustSound);
 					rigidbody2D.AddForce(new Vector2(0, 80));
 					state.Fuel--;
 				}
