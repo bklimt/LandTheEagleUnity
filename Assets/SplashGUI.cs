@@ -13,6 +13,8 @@ public class SplashGUI : MonoBehaviour {
 
 	void OnGUI() {
 		GameState state = GameState.Instance;
+		state.Crashed = false;
+		state.Landed = false;
 
 		GUI.skin = defaultSkin;
 		GUI.Label(new Rect(0, 0, Screen.width, Screen.height / 2), "Land the Eagle");
