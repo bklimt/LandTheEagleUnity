@@ -10,18 +10,32 @@ public class Surface : MonoBehaviour {
 	public bool createRight = true;
 	public bool rightIsLower = false;
 	public bool isFlat = false;
+	public bool isRoot = false;
 
 	private bool haveCreatedRight = false;
 	private int rows = 7;
 	private float maxY = -1.0f;
 	private float minY = -3.0f;
+	private float minX = -6;
+	private float maxX = 5;
 
 	void Start() {
+		GameState state = GameState.Instance;
+		if (isRoot) {
+			if (state.LandIsCreated) {
+				Debug.Log("Destroying land root for new scene.");
+				Destroy(gameObject);
+				return;
+			}
+			state.LandIsCreated = true;
+		}
+
+		DontDestroyOnLoad(gameObject);
 		MaybeCreateChildren();
 	}
 
 	private void MaybeCreateChildren() {
-		if (createRight && !haveCreatedRight && transform.position.x < 5) {
+		if (createRight && !haveCreatedRight && transform.position.x < maxX) {
 			// Debug.Log("Need to create a child land strip to the right. " +
 			//           "(x = " + transform.position.x + "," +
 			//           " scaleX = " + transform.localScale.x + "," +
@@ -88,12 +102,12 @@ public class Surface : MonoBehaviour {
 	void Update() {
 		GameState state = GameState.Instance;
 		if (!state.Grounded) {
-			transform.Translate(state.GroundSpeed * Time.deltaTime, 0, 0);
+			transform.Translate(state.GroundSpeed * Time.smoothDeltaTime, 0, 0);
 		}
 
 		MaybeCreateChildren();
 
-		if (transform.position.x < -6) {
+		if (transform.position.x < minX) {
 			Destroy(this.gameObject);
 		}
 	}

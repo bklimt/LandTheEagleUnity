@@ -23,15 +23,23 @@ public class GameState : MonoBehaviour {
 		return new Rect(left, top, width, height);
 	}
 
+	public bool LandIsCreated = false;
+
 	public int Level { get; private set; }
 	public int Speed;
 	public bool Crashed;
 	public bool Landed;
 	public int Fuel;
 
+	private Timer landMoveTimer = new Timer();
+
 	public float GroundSpeed {
 		get {
-			return -5.0f;
+			if (landMoveTimer.Finished) {
+				return -5.0f;
+			} else {
+				return 0;
+			}
 		}
 	}
 
@@ -44,6 +52,7 @@ public class GameState : MonoBehaviour {
 	void Start() {
 		Level = 0;
 		Fuel = 100000;
+		landMoveTimer.Start(this, 2);
 	}
 
 	void Update() {
