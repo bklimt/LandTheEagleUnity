@@ -17,7 +17,7 @@ public class GameState : MonoBehaviour {
 
 	public static Rect GetGUIButtonRect(int position) {
 		float top = (Screen.height / 2.0f) + position * (Screen.height / 6.0f);
-		float left = Screen.width * 0.2f;
+		float left = Screen.width * 0.15f;
 		float width = Screen.width - left * 2.0f;
 		float height = Screen.height / 7.0f;
 		return new Rect(left, top, width, height);

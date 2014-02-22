@@ -22,13 +22,21 @@ public class Surface : MonoBehaviour {
 
 	private void MaybeCreateChildren() {
 		if (createRight && !haveCreatedRight && transform.position.x < 5) {
+			// Debug.Log("Need to create a child land strip to the right. " +
+			//           "(x = " + transform.position.x + "," +
+			//           " scaleX = " + transform.localScale.x + "," +
+			//           " boxSizeX = " + 1.28f + ")");
+
 			haveCreatedRight = true;
 			
 			int slope = Random.Range(-1, 2);
+			// Debug.Log("Initial random slope is " + slope);
 			if (slope < 0 && transform.position.y < minY) {
+				// Debug.Log("Too low. Flattening.");
 				slope = 0;
 			}
 			if (slope > 0 && transform.position.y > maxY) {
+				// Debug.Log("Too high. Flattening.");
 				slope = 0;
 			}
 			
@@ -49,19 +57,29 @@ public class Surface : MonoBehaviour {
 			if (slope > 0) {
 				newY += (scaleY * boxSizeY);
 			}
-			
+
 			Vector3 newPosition = new Vector3(newX, newY, newZ);
+			// Debug.Log("Making new top tile at " + newPosition);
+
+			GameObject newTile = null;
 			if (slope < 0) {
-				Instantiate(surfaceTopBottomPrefab, newPosition, Quaternion.identity);
+				// Debug.Log("Making downslope.");
+				newTile = Instantiate(surfaceTopBottomPrefab, newPosition, Quaternion.identity) as GameObject;
 			} else if (slope > 0) {
-				Instantiate(surfaceBottomTopPrefab, newPosition, Quaternion.identity);
+				// Debug.Log("Making upslope.");
+				newTile = Instantiate(surfaceBottomTopPrefab, newPosition, Quaternion.identity) as GameObject;
 			} else {
-				Instantiate(surfaceTopTopPrefab, newPosition, Quaternion.identity);
+				// Debug.Log("Making flat surface.");
+				newTile = Instantiate(surfaceTopTopPrefab, newPosition, Quaternion.identity) as GameObject;
+			}
+			if (newTile == null) {
+				Debug.LogError("The new tile was null!");
 			}
 			
 			for (int i = 1; i < rows; i++) {
 				newY -= (scaleY * boxSizeY);
 				Vector3 childPosition = new Vector3(newX, newY, newZ);
+				// Debug.Log("Making filler at " + childPosition + ".");
 				Instantiate(surfaceFillerPrefab, childPosition, Quaternion.identity);
 			}
 		}

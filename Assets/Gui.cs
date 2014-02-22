@@ -27,6 +27,10 @@ public class Gui : MonoBehaviour {
 	private void DrawStatus() {
 		GUI.skin = stateSkin;
 
+		if (Screen.dpi > 200) {
+			GUI.skin.label.fontSize = 48;
+		}
+
 		GameState state = GameState.Instance;
 
 		float x = Screen.width * 0.1f;
@@ -48,6 +52,10 @@ public class Gui : MonoBehaviour {
 		DrawStatus();
 
 		GUI.skin = defaultSkin;
+		if (Screen.dpi > 200) {
+			GUI.skin.label.fontSize = 72;
+			GUI.skin.button.fontSize = 72;
+		}
 
 		if (!started) {
 			GUI.Label(new Rect(0, 0, Screen.width, Screen.height / 2), "Instructions");
