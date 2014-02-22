@@ -54,7 +54,8 @@ public class Gui : MonoBehaviour {
 		}
 
 		Rect button1Rect = GameState.GetGUIButtonRect(0);
-		
+		Rect button2Rect = GameState.GetGUIButtonRect(1);
+
 		GameState state = GameState.Instance;
 		if (!state.Grounded) {
 			return;
@@ -71,12 +72,20 @@ public class Gui : MonoBehaviour {
 				if (GUI.Button(button1Rect, "Retry")) {
 					state.RestartLevel();
 				}
+
+				if (GUI.Button(button2Rect, "Give Up")) {
+					state.Quit();
+				}
 			}
 		} else {
 			GUI.Label(new Rect(0, 0, Screen.width, Screen.height / 2), "You landed!");
 			if (showButtons) {
 				if (GUI.Button(button1Rect, "Next Level")) {
 					state.LoadNextLevel();
+				}
+
+				if (GUI.Button(button2Rect, "Give Up")) {
+					state.Quit();
 				}
 			}
 		}

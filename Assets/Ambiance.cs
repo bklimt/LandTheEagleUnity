@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Ambiance : MonoBehaviour {
+	public float seconds = 30;
 
 	void Start() {
 		StartCoroutine(PlayMusic());
@@ -12,7 +13,7 @@ public class Ambiance : MonoBehaviour {
 
 	private IEnumerator PlayMusic() {
 		while (true) {
-			yield return new WaitForSeconds(30);
+			yield return new WaitForSeconds(seconds);
 			gameObject.audio.Play();
 		}
 	}

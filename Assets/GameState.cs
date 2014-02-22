@@ -49,6 +49,10 @@ public class GameState : MonoBehaviour {
 	void Update() {
 	}
 
+	public void Quit() {
+		Application.LoadLevel("SplashScene");
+	}
+
 	public void RestartLevel() {
 		Application.LoadLevel("LandingScene");
 		Speed = 0;
