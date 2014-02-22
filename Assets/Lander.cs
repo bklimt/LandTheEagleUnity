@@ -23,4 +23,8 @@ public class Lander : MonoBehaviour {
 		}
 		state.Speed = (int)Mathf.Round(rigidbody2D.velocity.y / -2);
 	}
+
+	void KnockOver() {
+		rigidbody2D.AddTorque(-2);
+	}
 }

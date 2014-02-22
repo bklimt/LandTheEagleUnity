@@ -9,6 +9,7 @@ public class Surface : MonoBehaviour {
 	public GameObject surfaceFillerPrefab;
 	public bool createRight = true;
 	public bool rightIsLower = false;
+	public bool isFlat = false;
 
 	private bool haveCreatedRight = false;
 	private int rows = 6;

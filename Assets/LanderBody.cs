@@ -14,8 +14,10 @@ public class LanderBody : MonoBehaviour {
 		if (state.Grounded) {
 			return;
 		}
-		if (state.Speed >= 3) {
+		Surface surface = collision.collider.gameObject.GetComponent<Surface>();
+		if (!surface.isFlat || state.Speed >= 3) {
 			state.Crashed = true;
+			SendMessageUpwards("KnockOver");
 			return;
 		}
 		state.Landed = true;
