@@ -3,25 +3,24 @@ using System.Collections;
 
 public class Lander : MonoBehaviour {
 
-	public GameObject body;
-
 	void Start() {
 	}
 	
 	void Update() {
-		if (this.IsGrounded()) {
+		GameState state = GameState.Instance;
+		if (state.Grounded) {
 			return;
 		}
 		if (Input.GetMouseButtonDown(0)) {
 			if (rigidbody2D.gravityScale != 0.0f) {
-				rigidbody2D.AddForce(new Vector2(0, 80));
+				if (state.Fuel > 0) {
+					rigidbody2D.AddForce(new Vector2(0, 80));
+					state.Fuel--;
+				}
 			} else {
 				rigidbody2D.gravityScale = 1.0f;
 			}
 		}
-	}
-
-	public bool IsGrounded() {
-		return body.GetComponent<LanderBody>().IsGrounded();
+		state.Speed = (int)Mathf.Round(rigidbody2D.velocity.y / -2);
 	}
 }

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Surface : MonoBehaviour {
 
-	public GameObject lander;
 	public GameObject surfaceTopTopPrefab;
 	public GameObject surfaceTopBottomPrefab;
 	public GameObject surfaceBottomTopPrefab;
@@ -21,7 +20,8 @@ public class Surface : MonoBehaviour {
 	}
 	
 	void Update() {
-		if (!lander.GetComponent<Lander>().IsGrounded()) {
+		GameState state = GameState.Instance;
+		if (!state.Grounded) {
 			transform.Translate(speed, 0, 0);
 		}
 
@@ -56,21 +56,17 @@ public class Surface : MonoBehaviour {
 
 			Vector3 newPosition = new Vector3(newX, newY, newZ);
 			if (slope < 0) {
-				var obj = (GameObject)Instantiate(surfaceTopBottomPrefab, newPosition, Quaternion.identity);
-				obj.GetComponent<Surface>().lander = lander;
+				Instantiate(surfaceTopBottomPrefab, newPosition, Quaternion.identity);
 			} else if (slope > 0) {
-				var obj = (GameObject)Instantiate(surfaceBottomTopPrefab, newPosition, Quaternion.identity);
-				obj.GetComponent<Surface>().lander = lander;
+				Instantiate(surfaceBottomTopPrefab, newPosition, Quaternion.identity);
 			} else {
-				var obj = (GameObject)Instantiate(surfaceTopTopPrefab, newPosition, Quaternion.identity);
-				obj.GetComponent<Surface>().lander = lander;
+				Instantiate(surfaceTopTopPrefab, newPosition, Quaternion.identity);
 			}
 
 			for (int i = 1; i < rows; i++) {
 				newY -= (scaleY * boxSizeY);
 				Vector3 childPosition = new Vector3(newX, newY, newZ);
-				var obj = (GameObject)Instantiate(surfaceFillerPrefab, childPosition, Quaternion.identity);
-				obj.GetComponent<Surface>().lander = lander;
+				Instantiate(surfaceFillerPrefab, childPosition, Quaternion.identity);
 			}
 		}
 

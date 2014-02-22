@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class LanderBody : MonoBehaviour {
-	private bool crashed = false;
-	private bool landed = false;
 
 	void Start() {
 	}
@@ -12,12 +10,14 @@ public class LanderBody : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D(Collision2D collision) {
-		if (!crashed) {
-			crashed = true;
+		GameState state = GameState.Instance;
+		if (state.Grounded) {
+			return;
 		}
+		if (state.Speed >= 3) {
+			state.Crashed = true;
+			return;
+		}
+		state.Landed = true;
 	}
-
-	public bool IsGrounded() {
-		return crashed || landed;
-	}	
 }

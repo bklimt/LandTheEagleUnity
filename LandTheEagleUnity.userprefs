@@ -1,12 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/InstructionsScript.cs">
     <Files>
-      <File FileName="Assets/LanderBody.cs" Line="8" Column="1" />
-      <File FileName="Assets/Surface.cs" Line="24" Column="34" />
-      <File FileName="Assets/Lander.cs" Line="4" Column="33" />
-      <File FileName="Assets/Flame.cs" Line="4" Column="37" />
-      <File FileName="Assets/InstructionsScript.cs" Line="6" Column="2" />
+      <File FileName="Assets/InstructionsScript.cs" Line="16" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
