@@ -10,11 +10,17 @@ public class GameState : MonoBehaviour {
 			if (instance == null) {
 				instance = new GameObject("GameState").AddComponent<GameState>();
 				DontDestroyOnLoad(instance);
-
-				instance.Level = 0;
 			}
 			return instance;
 		}
+	}
+
+	public static Rect GetGUIButtonRect(int position) {
+		float top = (Screen.height / 2.0f) + position * (Screen.height / 6.0f);
+		float left = Screen.width * 0.2f;
+		float width = Screen.width - left * 2.0f;
+		float height = Screen.height / 7.0f;
+		return new Rect(left, top, width, height);
 	}
 
 	public int Level { get; private set; }
@@ -23,6 +29,12 @@ public class GameState : MonoBehaviour {
 	public bool Landed;
 	public int Fuel;
 
+	public float GroundSpeed {
+		get {
+			return -0.05f;
+		}
+	}
+
 	public bool Grounded {
 		get {
 			return Crashed || Landed;
@@ -30,6 +42,7 @@ public class GameState : MonoBehaviour {
 	}
 
 	void Start() {
+		Level = 0;
 		Fuel = 100000;
 	}
 
@@ -47,11 +60,5 @@ public class GameState : MonoBehaviour {
 	public void LoadNextLevel() {
 		Level++;
 		RestartLevel();
-	}
-	
-	void OnGUI() {
-		GUI.Label(new Rect(100, 50, 300, 80), "Level: " + Level);
-		GUI.Label(new Rect(100, 70, 300, 80), "Speed: " + Speed);
-		GUI.Label(new Rect(100, 90, 300, 80), "Fuel: " + Fuel);
 	}
 }

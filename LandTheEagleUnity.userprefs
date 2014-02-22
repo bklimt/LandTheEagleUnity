@@ -1,8 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/InstructionsScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Finished.cs">
     <Files>
-      <File FileName="Assets/InstructionsScript.cs" Line="16" Column="1" />
+      <File FileName="Assets/GameState.cs" Line="19" Column="73" />
+      <File FileName="Assets/InstructionsScript.cs" Line="18" Column="49" />
+      <File FileName="Assets/Finished.cs" Line="34" Column="4" />
+      <File FileName="Assets/Lander.cs" Line="28" Column="27" />
+      <File FileName="Assets/LanderBody.cs" Line="21" Column="11" />
+      <File FileName="Assets/Surface.cs" Line="12" Column="29" />
+      <File FileName="Assets/Flame.cs" Line="4" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
