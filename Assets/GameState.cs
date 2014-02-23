@@ -38,7 +38,10 @@ public class GameState : MonoBehaviour {
 			if (level > maxLevel) {
 				maxLevel = level;
 				Debug.Log("New max level: " + maxLevel);
+				PlayerPrefs.SetInt("maxLevel", maxLevel);
+				PlayerPrefs.Save();
 			}
+			Fuel = (int)Mathf.Round(100.0f - 80.0f * (value / LEVELS));
 		}
 	}
 	public int Speed;
@@ -92,8 +95,7 @@ public class GameState : MonoBehaviour {
 	}
 
 	void Start() {
-		Level = 0;
-		Fuel = 100000;
+		Level = PlayerPrefs.GetInt("maxLevel");
 		landMoveTimer.Start(this, 1);
 	}
 
