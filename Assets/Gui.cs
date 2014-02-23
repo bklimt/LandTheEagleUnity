@@ -36,22 +36,24 @@ public class Gui : MonoBehaviour {
 		float x = Screen.width * 0.1f;
 		float y = Screen.height * 0.05f;
 		float width = Screen.width - 2.0f * x;
-		float height = Screen.height * 0.05f;
-		
-		GUI.Label(new Rect(x, y, width, height), "Level: " + (state.Level + 1));
-		if (state.Speed >= 3) {
-			GUI.Label(new Rect(x, y + height, width, height),
-			          "<color=#ff0000>Speed: " + state.Speed + "</color>");
-		} else {
-			GUI.Label(new Rect(x, y + height, width, height), "Speed: " + state.Speed);
-		}
-		GUI.Label(new Rect(x, y + 2 * height, width, height), "Fuel: " + state.Fuel);
+		float height = Screen.height * 0.15f;
+
+		string statusText =
+			"Level: " + (state.Level + 1) + "\n" +
+			((state.Speed >= 3)
+				 ? ("<color=#ff0000>Speed: " + state.Speed + "</color>\n")
+				 : ("Speed: " + state.Speed + "\n")) +
+			"Fuel: " + state.Fuel;
+
+		GUI.Label(new Rect(x, y, width, height), statusText);
 	}
 
 	void OnGUI() {
 		GameState state = GameState.Instance;
 
-		DrawStatus();
+		if (started) {
+			DrawStatus();
+		}
 
 		GUI.skin = defaultSkin;
 		if (state.IsHighDpi()) {
