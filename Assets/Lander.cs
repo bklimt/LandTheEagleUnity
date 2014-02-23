@@ -17,14 +17,14 @@ public class Lander : MonoBehaviour {
 			if (rigidbody2D.gravityScale != 0.0f) {
 				if (state.Fuel > 0) {
 					audio.PlayOneShot(thrustSound);
-					rigidbody2D.AddForce(new Vector2(0, 80));
+					rigidbody2D.AddForce(new Vector2(0, 15));
 					state.Fuel--;
 				}
 			} else {
-				rigidbody2D.gravityScale = 1.0f;
+				rigidbody2D.gravityScale = 0.1f;
 			}
 		}
-		state.Speed = (int)Mathf.Round(rigidbody2D.velocity.y / -2);
+		state.Speed = (int)Mathf.Round(rigidbody2D.velocity.y / -0.5f);
 	}
 
 	void KnockOver() {

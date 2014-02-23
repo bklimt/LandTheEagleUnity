@@ -27,6 +27,7 @@ public class Surface : MonoBehaviour {
 				Destroy(gameObject);
 				return;
 			}
+			Debug.Log("Initialized a land root.");
 			state.LandIsCreated = true;
 		}
 
@@ -35,6 +36,8 @@ public class Surface : MonoBehaviour {
 	}
 
 	private void MaybeCreateChildren() {
+		GameState state = GameState.Instance;
+
 		if (createRight && !haveCreatedRight && transform.position.x < maxX) {
 			// Debug.Log("Need to create a child land strip to the right. " +
 			//           "(x = " + transform.position.x + "," +
@@ -43,7 +46,7 @@ public class Surface : MonoBehaviour {
 
 			haveCreatedRight = true;
 			
-			int slope = Random.Range(-1, 2);
+			int slope = state.RandomSlope;
 			// Debug.Log("Initial random slope is " + slope);
 			if (slope < 0 && transform.position.y < minY) {
 				// Debug.Log("Too low. Flattening.");
@@ -88,6 +91,9 @@ public class Surface : MonoBehaviour {
 			}
 			if (newTile == null) {
 				Debug.LogError("The new tile was null!");
+			}
+			if (newTile.GetComponent<Surface>().isRoot) {
+				Debug.LogError("Accidentally created a new root!");
 			}
 			
 			for (int i = 1; i < rows; i++) {

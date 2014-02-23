@@ -58,7 +58,8 @@ public class Gui : MonoBehaviour {
 		}
 
 		if (!started) {
-			GUI.Label(new Rect(0, 0, Screen.width, Screen.height / 2), "Instructions");
+			GUI.Label(new Rect(0, 0, Screen.width, Screen.height),
+			          "Tap to thrust.\nLand where flat.\nNot too fast.");
 		}
 
 		Rect button1Rect = GameState.GetGUIButtonRect(0);
@@ -75,18 +76,18 @@ public class Gui : MonoBehaviour {
 		}
 		
 		if (state.Crashed) {
-			GUI.Label(new Rect(0, 0, Screen.width, Screen.height / 2), "You crashed!");
+			GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "You crashed.");
 			if (showButtons) {
 				if (GUI.Button(button1Rect, "Retry")) {
 					state.RestartLevel();
 				}
 
 				if (GUI.Button(button2Rect, "Give Up")) {
-					state.Quit();
+					state.GiveUp();
 				}
 			}
 		} else {
-			GUI.Label(new Rect(0, 0, Screen.width, Screen.height / 2), "You landed!");
+			GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "You landed!");
 			if (showButtons) {
 				if (GUI.Button(button1Rect, "Next Level")) {
 					state.LoadNextLevel();
