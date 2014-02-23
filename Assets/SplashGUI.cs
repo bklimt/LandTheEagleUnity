@@ -19,7 +19,7 @@ public class SplashGUI : MonoBehaviour {
 		GUI.skin = defaultSkin;
 		if (Screen.dpi > 200) {
 			GUI.skin.label.fontSize = 72;
-			GUI.skin.button.fontSize = 72;
+			GUI.skin.button.fontSize = 48;
 		}
 
 		GUI.Label(new Rect(0, 0, Screen.width, Screen.height / 2), "Land the Eagle");

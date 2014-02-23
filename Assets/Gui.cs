@@ -54,7 +54,7 @@ public class Gui : MonoBehaviour {
 		GUI.skin = defaultSkin;
 		if (Screen.dpi > 200) {
 			GUI.skin.label.fontSize = 72;
-			GUI.skin.button.fontSize = 72;
+			GUI.skin.button.fontSize = 48;
 		}
 
 		if (!started) {
