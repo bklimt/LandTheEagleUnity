@@ -25,6 +25,16 @@ public class GameState : MonoBehaviour {
 		return new Rect(left, top, width, height);
 	}
 
+	public bool IsHighDpi() {
+#if UNITY_WP8
+		return true;
+#endif
+		if (Screen.dpi > 200) {
+			return true;
+		}
+		return false;
+	}
+
 	public bool LandIsCreated = false;
 
 	private int level;

@@ -27,11 +27,11 @@ public class Gui : MonoBehaviour {
 	private void DrawStatus() {
 		GUI.skin = stateSkin;
 
-		if (Screen.dpi > 200) {
+		GameState state = GameState.Instance;
+
+		if (state.IsHighDpi()) {
 			GUI.skin.label.fontSize = 48;
 		}
-
-		GameState state = GameState.Instance;
 
 		float x = Screen.width * 0.1f;
 		float y = Screen.height * 0.05f;
@@ -49,10 +49,12 @@ public class Gui : MonoBehaviour {
 	}
 
 	void OnGUI() {
+		GameState state = GameState.Instance;
+
 		DrawStatus();
 
 		GUI.skin = defaultSkin;
-		if (Screen.dpi > 200) {
+		if (state.IsHighDpi()) {
 			GUI.skin.label.fontSize = 72;
 			GUI.skin.button.fontSize = 48;
 		}
@@ -65,7 +67,6 @@ public class Gui : MonoBehaviour {
 		Rect button1Rect = GameState.GetGUIButtonRect(0);
 		Rect button2Rect = GameState.GetGUIButtonRect(1);
 
-		GameState state = GameState.Instance;
 		if (!state.Grounded) {
 			return;
 		}

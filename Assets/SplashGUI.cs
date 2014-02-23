@@ -17,7 +17,7 @@ public class SplashGUI : MonoBehaviour {
 		state.Landed = false;
 
 		GUI.skin = defaultSkin;
-		if (Screen.dpi > 200) {
+		if (state.IsHighDpi()) {
 			GUI.skin.label.fontSize = 72;
 			GUI.skin.button.fontSize = 48;
 		}
