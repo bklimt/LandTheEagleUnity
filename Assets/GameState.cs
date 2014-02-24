@@ -3,8 +3,6 @@ using System.Collections;
 
 public class GameState : MonoBehaviour {
 
-	private const int LEVELS = 30;
-
 	private static GameState instance;
 
 	public static GameState Instance {
@@ -37,10 +35,15 @@ public class GameState : MonoBehaviour {
 
 	public bool LandIsCreated = false;
 
+	private bool readLevel = false;
 	private int level;
 	private int maxLevel;
 	public int Level {
 		get {
+			if (!readLevel) {
+				level = PlayerPrefs.GetInt("maxLevel");
+				readLevel = true;
+			}
 			return level;
 		}
 		private set {
@@ -51,20 +54,38 @@ public class GameState : MonoBehaviour {
 				PlayerPrefs.SetInt("maxLevel", maxLevel);
 				PlayerPrefs.Save();
 			}
-			Fuel = (int)Mathf.Round(100.0f - 80.0f * (value / LEVELS));
+			Fuel = (int)Mathf.Round(100.0f - (1.6f * level));
 		}
 	}
+
+	private bool readHasWon = false;
+	private bool hasWon;
+	public bool HasWon {
+		get {
+			if (!readHasWon) {
+				hasWon = (PlayerPrefs.GetInt("hasWon") != 0);
+				readHasWon = true;
+			}
+			return hasWon;
+		}
+		set {
+			PlayerPrefs.SetInt("hasWon", value ? 1 : 0);
+			PlayerPrefs.Save();
+		}
+	}
+
 	public int Speed;
 	public bool Crashed;
 	public bool Landed;
 	public int Fuel;
+	public bool IvyMode = false;
 
 	private Timer landMoveTimer = new Timer();
 
 	public float GroundSpeed {
 		get {
 			if (landMoveTimer.Finished) {
-				return -2.0f + (Level / (float)LEVELS) * -5.0f;
+				return -2.0f + (Level / -6.0f);
 			} else {
 				return 0;
 			}
@@ -73,7 +94,7 @@ public class GameState : MonoBehaviour {
 
 	private float FlatProbability {
 		get {
-			float flatProbability = 1.0f - (Level / (float)LEVELS);
+			float flatProbability = 1.0f - (Level / 30.0f);
 			if (flatProbability > 0.4f) {
 				flatProbability = 0.4f;
 			}
@@ -105,7 +126,6 @@ public class GameState : MonoBehaviour {
 	}
 
 	void Start() {
-		Level = PlayerPrefs.GetInt("maxLevel");
 		landMoveTimer.Start(this, 1);
 	}
 
@@ -122,11 +142,11 @@ public class GameState : MonoBehaviour {
 	}
 	
 	public void RestartLevel() {
+		Level = Level;  // Resets things like the fuel.
 		Application.LoadLevel("LandingScene");
 		Speed = 0;
 		Crashed = false;
 		Landed = false;
-		Fuel = 100;
 	}
 
 	public void StartLevel(int level) {

@@ -89,15 +89,13 @@ public class Gui : MonoBehaviour {
 					state.GiveUp();
 				}
 			}
-		} else {
-			GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "You landed!");
+		} else if (state.Level == 49) {
+			GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "You won!");
 			if (showButtons) {
-				if (GUI.Button(button1Rect, "Next Level")) {
-					state.LoadNextLevel();
-				}
-
-				if (GUI.Button(button2Rect, "Give Up")) {
-					state.Quit();
+				if (GUI.Button(button1Rect, "Unlock Ivy Mode")) {
+					state.HasWon = true;
+					state.IvyMode = true;
+					state.GiveUp();
 				}
 			}
 		}

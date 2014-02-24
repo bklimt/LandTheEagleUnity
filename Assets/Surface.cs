@@ -7,6 +7,7 @@ public class Surface : MonoBehaviour {
 	public GameObject surfaceTopBottomPrefab;
 	public GameObject surfaceBottomTopPrefab;
 	public GameObject surfaceFillerPrefab;
+	public GameObject childSurfacePrefab;
 	public bool createRight = true;
 	public bool rightIsLower = false;
 	public bool isFlat = false;
@@ -31,12 +32,20 @@ public class Surface : MonoBehaviour {
 			state.LandIsCreated = true;
 		}
 
+		if (childSurfacePrefab != null) {
+			var childPosition = new Vector3(0, 0, 0);
+			var child = Instantiate(childSurfacePrefab, childPosition, Quaternion.identity) as GameObject;
+			child.transform.parent = transform;
+			child.transform.localPosition = childPosition;
+			child.transform.localScale = new Vector3(1, 1, 1);
+		}
+
 		DontDestroyOnLoad(gameObject);
 		MaybeCreateChildren();
 	}
 
 	private void MaybeCreateChildren() {
-		GameState state = GameState.Instance;
+		var state = GameState.Instance;
 
 		if (createRight && !haveCreatedRight && transform.position.x < maxX) {
 			// Debug.Log("Need to create a child land strip to the right. " +
@@ -75,7 +84,7 @@ public class Surface : MonoBehaviour {
 				newY += (scaleY * boxSizeY);
 			}
 
-			Vector3 newPosition = new Vector3(newX, newY, newZ);
+			var newPosition = new Vector3(newX, newY, newZ);
 			// Debug.Log("Making new top tile at " + newPosition);
 
 			GameObject newTile = null;
