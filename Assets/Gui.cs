@@ -98,6 +98,17 @@ public class Gui : MonoBehaviour {
 					state.GiveUp();
 				}
 			}
+		} else {
+			GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "You landed!");
+			if (showButtons) {
+				if (GUI.Button(button1Rect, "Next Level")) {
+					state.LoadNextLevel();
+				}
+				
+				if (GUI.Button(button2Rect, "Give Up")) {
+					state.Quit();
+				}
+			}
 		}
 	}
 }
