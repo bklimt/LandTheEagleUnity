@@ -37,6 +37,10 @@ public class Gui : MonoBehaviour {
 		float y = Screen.height * 0.05f;
 		float width = Screen.width - 2.0f * x;
 		float height = Screen.height * 0.15f;
+		if (height < 200) {
+			// This is for small hi-res screens like the Nexus One.
+			height = 200;
+		}
 
 		string statusText =
 			"Level: " + (state.Level + 1) + "\n" +
