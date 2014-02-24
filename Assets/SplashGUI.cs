@@ -23,11 +23,13 @@ public class SplashGUI : MonoBehaviour {
 		}
 
 		GUI.Label(new Rect(0, 0, Screen.width, Screen.height / 2), "Land the Eagle");
-		
+
+		/*
 		Rect button0Rect = GameState.GetGUIButtonRect(-2);
 		if (GUI.Button(button0Rect, "Skip Last")) {
 			state.StartLevel(49);
 		}
+		*/
 
 		Rect button1Rect = GameState.GetGUIButtonRect(-1);
 		if (GUI.Button(button1Rect, (state.Level == 0 ? "Start" : ("Level " + (state.Level + 1))))) {
