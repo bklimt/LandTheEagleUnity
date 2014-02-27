@@ -17,6 +17,9 @@ public class Gui : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0)) {
 			started = true;
 		}
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			Application.LoadLevel("SplashScene");
+		}
 	}
 	
 	private IEnumerator ShowButtons() {

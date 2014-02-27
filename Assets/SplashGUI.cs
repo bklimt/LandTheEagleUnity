@@ -9,6 +9,9 @@ public class SplashGUI : MonoBehaviour {
 	}
 	
 	void Update() {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			Application.Quit();
+		}
 	}
 
 	void OnGUI() {
