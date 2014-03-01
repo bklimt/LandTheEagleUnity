@@ -8,7 +8,7 @@ proud to put on app stores?" `Land the Eagle` is the result.
 engine on the lander thrusts, giving you a little boost. The goal is to find a flat spot to land. You have to do this
 before you run out of fuel. You must slow yourself down enough when you land so that you don't crash.
 
-I started by building an [iOS version](https://github.com/bklimt/LandTheEagle) with SpriteKit. It took probably around
+I started by building an [iOS version](https://github.com/bklimt/LandTheEagle) with Sprite Kit. It took probably around
 15 more hours (not in a row) to rewrite it on Unity to make it available on multiple platforms. The graphics were all
 either drawn by me or modified from public domain imagery from NASA. No endorsement from NASA is implied by the use of
 the graphics. The image of the lunar module for the icon is 2.1 MB, which is about 80 times the amount of memory in the
